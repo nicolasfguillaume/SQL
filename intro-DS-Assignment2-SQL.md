@@ -1,9 +1,9 @@
 Problem 1
 ---------
 
-(a) select: s10398_txt_earn(frequency)
+# (a) select: s10398_txt_earn(frequency)
 
-'''
+'''c
 SELECT count(*) FROM
 (
 SELECT count 
@@ -13,7 +13,7 @@ WHERE docid = "10398_txt_earn"
 x
 '''
 
-(b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
+# (b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
 
 SELECT count(*) FROM
 (
