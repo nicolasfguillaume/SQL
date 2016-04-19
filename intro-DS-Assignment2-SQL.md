@@ -1,15 +1,9 @@
 Problem 1
 ---------
 
-```javascript
-function test() {
-    console.log('Test passed!');
-}
-```
-
 # (a) select: s10398_txt_earn(frequency)
 
-'''c
+```c
 SELECT count(*) FROM
 (
 SELECT count 
@@ -17,7 +11,7 @@ FROM Frequency
 WHERE docid = "10398_txt_earn"
 )
 x
-'''
+```
 
 # (b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
 
