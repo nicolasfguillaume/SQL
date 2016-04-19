@@ -95,22 +95,6 @@ WHERE row_num_C = 2 AND col_num_C = 3
 
 ## (h) Term-document matrix
 
-TEST:
-```sql
-SELECT value_dxdt
-FROM
-(
-SELECT d.docid AS row_num_dxdt , dt.docid AS col_num_dxdt , SUM(d.count * dt.count) AS value_dxdt
-FROM Frequency d , (SELECT term, docid, count FROM Frequency) dt
-WHERE d.term = dt.term
-GROUP BY d.docid , dt.docid
-)
-x
-WHERE row_num_dxdt = '10080_txt_crude' AND col_num_dxdt = '17035_txt_earn'
-```
-
-SOLUTION:
-
 ```sql
 SELECT d.docid AS row_num_ddt , dt.docid AS col_num_ddt , SUM(d.count * dt.count) AS 
 value_ddt
@@ -118,16 +102,6 @@ FROM Frequency d, Frequency dt
 WHERE d.term = dt.term
 AND row_num_ddt = '10080_txt_crude' 
 AND col_num_ddt = '17035_txt_earn'
-```
-
-OR EVEN SHORTER:
-
-```sql
-SELECT SUM(d.count * dt.count)
-FROM Frequency d, Frequency dt
-WHERE d.term = dt.term
-AND d.docid = '10080_txt_crude' 
-AND dt.docid = '17035_txt_earn'
 ```
 
 ## (i) Keyword search
