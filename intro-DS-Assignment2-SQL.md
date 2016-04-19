@@ -1,6 +1,12 @@
 Problem 1
 ---------
 
+```javascript
+function test() {
+    console.log('Test passed!');
+}
+```
+
 # (a) select: s10398_txt_earn(frequency)
 
 '''c
