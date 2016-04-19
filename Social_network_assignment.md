@@ -16,7 +16,6 @@ English: The student with ID1 likes the student with ID2. Liking someone is not 
 Find the names of all students who are friends with someone named Gabriel. 
 
 ```sql
-
 SELECT DISTINCT H2.name
 FROM Highschooler H1, Friend, Highschooler H2
 WHERE H1.ID = Friend.ID1 AND H2.ID = Friend.ID2
@@ -27,7 +26,6 @@ AND H1.name = 'Gabriel'
 For every student who likes someone 2 or more grades younger than themselves, return that student's name and grade, and the name and grade of the student they like. 
 
 ```sql
-
 SELECT DISTINCT H1.name, H1.grade, H2.name, H2.grade 
 FROM Highschooler H1, Likes, Highschooler H2
 WHERE H1.ID = Likes.ID1 AND H2.ID = Likes.ID2
@@ -38,7 +36,6 @@ AND (H1.grade - H2.grade) >= 2
 For every pair of students who both like each other, return the name and grade of both students. Include each pair only once, with the two names in alphabetical order. 
 
 ```sql
-
 SELECT DISTINCT H1.name, H1.grade, H2.name, H2.grade
 FROM Highschooler H1, Highschooler H2,
 ( SELECT DISTINCT L1.ID1, L1.ID2 FROM Likes L1,  Likes L2
@@ -50,7 +47,6 @@ WHERE H1.ID = Pairs.ID1 AND H2.ID = Pairs.ID2 AND H1.name < H2.name
 Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades. Sort by grade, then by name within each grade. 
 
 ```sql
-
 SELECT name, grade
 FROM Highschooler
 WHERE ID NOT IN
@@ -64,7 +60,6 @@ ORDER BY grade, name
 For every situation where student A likes student B, but we have no information about whom B likes (that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades. 
 
 ```sql
-
 SELECT DISTINCT H1.name, H1.grade, H2.name, H2.grade
 FROM Highschooler H1, Likes L, Highschooler H2
 WHERE H1.ID = L.ID1 AND H2.ID = L.ID2
@@ -75,7 +70,6 @@ AND H2.ID NOT IN (SELECT DISTINCT ID1 FROM Likes)
 Find names and grades of students who only have friends in the same grade. Return the result sorted by grade, then by name within each grade. 
 
 ```sql
-
 SELECT name, grade FROM Highschooler
 WHERE ID NOT IN (
 SELECT DISTINCT H1.ID
@@ -89,7 +83,6 @@ ORDER BY grade, name
 For each student A who likes a student B where the two are not friends, find if they have a friend C in common (who can introduce them!). For all such trios, return the name and grade of A, B, and C. 
 
 ```sql
-
 SELECT DISTINCT H1.name,H1.grade, H2.name, H2.grade, H3.name, H3.grade
 FROM Highschooler H1, Likes, Highschooler H2, Friend Fof1, Friend Fof2, Highschooler H3
 WHERE H1.ID = Likes.ID1 AND Likes.ID2 = H2.ID
@@ -102,7 +95,6 @@ AND H1.ID = Fof1.ID1 AND H2.ID = Fof2.ID1
 Find the difference between the number of students in the school and the number of different first names. 
 
 ```sql
-
 SELECT nbStudent - nbName
 FROM
 (SELECT COUNT(DISTINCT ID) AS nbStudent FROM Highschooler),
@@ -113,7 +105,6 @@ FROM
 Find the name and grade of all students who are liked by more than one other student. 
 
 ```sql
-
 SELECT H2.name, H2.grade
 FROM Highschooler H1, Likes, Highschooler H2
 WHERE H1.ID = Likes.ID1 AND Likes.ID2 = H2.ID
@@ -129,7 +120,6 @@ HAVING COUNT(DISTINCT H1.ID) > 1
 For every situation where student A likes student B, but student B likes a different student C, return the names and grades of A, B, and C. 
 
 ```sql
-
 SELECT HA.name, HA.grade, HB.name, HB.grade, HC.name, HC.grade
 FROM Highschooler HA, Likes LikesAB, Highschooler HB, Likes LikesBC, Highschooler HC
 WHERE HA.ID = LikesAB.ID1 AND LikesAB.ID2 = HB.ID
@@ -141,7 +131,6 @@ AND HA.ID <> HC.ID
 Find those students for whom all of their friends are in different grades from themselves. Return the students' names and grades. 
 
 ```sql
-
 SELECT DISTINCT H.name, H.grade
 FROM Highschooler H
 
@@ -157,7 +146,6 @@ AND H1.grade = H2.grade
 What is the average number of friends per student? (Your result should be just one number.) 
 
 ```sql
-
 SELECT AVG(friendCount)
 FROM
 (
@@ -172,7 +160,6 @@ GROUP BY H1.ID
 Find the number of students who are either friends with Cassandra or are friends of friends of Cassandra. Do not count Cassandra, even though technically she is a friend of a friend. 
 
 ```sql
-
 SELECT nbFriend + nbFriendofFriend
 FROM
 (
@@ -192,7 +179,6 @@ AND H1.name = 'Cassandra' AND H3.name <> 'Cassandra' )
 Find the name and grade of the student(s) with the greatest number of friends. 
 
 ```sql
-
 SELECT friendCount_Table.name, friendCount_Table.grade
 FROM
 ( SELECT H1.ID, H1.name,H1.grade, COUNT(DISTINCT H2.ID) AS friendCount
@@ -216,7 +202,6 @@ WHERE friendCount = (
 It's time for the seniors to graduate. Remove all 12th graders from Highschooler. 
 
 ```sql
-
 DELETE 
 FROM Highschooler
 WHERE grade = '12'
@@ -226,7 +211,6 @@ WHERE grade = '12'
 If two students A and B are friends, and A likes B but not vice-versa, remove the Likes tuple. 
 
 ```sql
-
 DELETE 
 FROM Likes
 WHERE ID2 IN
