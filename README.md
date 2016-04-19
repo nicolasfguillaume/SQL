@@ -1,4 +1,9 @@
 # SQL
 
 * Introduction to Data Science (Coursera): SQL assignment
-* Standford SQL course
+..* Problem 1
+..* Problem 2
+
+* Standford Database course: SQL assignment
+..* Movie rating
+..* Social network
