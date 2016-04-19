@@ -3,7 +3,7 @@ Problem 1
 
 # (a) select: s10398_txt_earn(frequency)
 
-```perl
+```sql
 SELECT count(*) FROM
 (
 SELECT count 
@@ -15,6 +15,7 @@ x
 
 # (b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
 
+```sql
 SELECT count(*) FROM
 (
 SELECT term
@@ -22,6 +23,7 @@ FROM Frequency
 WHERE docid = "10398_txt_earn" AND count = 1
 )
 x
+```
 
 (c) union: pterm(sdocid=10398_txt_earn and count=1(frequency)) U pterm(sdocid=925_txt_trade and count=1(frequency))
 
