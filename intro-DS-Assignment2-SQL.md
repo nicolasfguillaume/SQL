@@ -3,7 +3,7 @@ Problem 1
 
 # (a) select: s10398_txt_earn(frequency)
 
-```c
+```perl
 SELECT count(*) FROM
 (
 SELECT count 
