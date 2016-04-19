@@ -9,7 +9,6 @@ SELECT count
 FROM Frequency 
 WHERE docid = "10398_txt_earn"
 )
-x
 ```
 
 ## (b) Select Project
@@ -21,7 +20,6 @@ SELECT term
 FROM Frequency 
 WHERE docid = "10398_txt_earn" AND count = 1
 )
-x
 ```
 
 ## (c) Union
@@ -37,7 +35,6 @@ UNION
 SELECT term FROM Frequency
 WHERE docid = "925_txt_trade" AND count = 1
 )
-x
 ```
 
 ## (d) Count
@@ -48,7 +45,6 @@ SELECT count(*) FROM
 SELECT docid FROM Frequency
 WHERE term = "parliament"
 )
-x
 ```
 
 ## (e) Big document: GROUP BY and HAVING
@@ -61,7 +57,6 @@ FROM Frequency
 GROUP BY docid
 HAVING SUM(count) > 300
 )
-x
 ```
 
 ## (f) Two words: INTERSECT
@@ -77,7 +72,6 @@ INTERSECT
 SELECT docid FROM Frequency
 WHERE term = "world" 
 )
-x
 ```
 
 ***
