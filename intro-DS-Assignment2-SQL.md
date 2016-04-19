@@ -1,6 +1,6 @@
 # Problem 1
 
-## (a) select: s10398_txt_earn(frequency)
+## (a) Select
 
 ```sql
 SELECT count(*) FROM
@@ -12,7 +12,7 @@ WHERE docid = "10398_txt_earn"
 x
 ```
 
-## (b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
+## (b) Select Project
 
 ```sql
 SELECT count(*) FROM
@@ -24,7 +24,7 @@ WHERE docid = "10398_txt_earn" AND count = 1
 x
 ```
 
-## (c) union: pterm(sdocid=10398_txt_earn and count=1(frequency)) U pterm(sdocid=925_txt_trade and count=1(frequency))
+## (c) Union
 
 ```sql
 SELECT count(*) FROM
@@ -40,7 +40,7 @@ WHERE docid = "925_txt_trade" AND count = 1
 x
 ```
 
-(d) count:
+(d) Count
 
 ```sql
 SELECT count(*) FROM
@@ -51,7 +51,7 @@ WHERE term = "parliament"
 x
 ```
 
-## (e) big document: GROUP BY and HAVING
+## (e) Big document: GROUP BY and HAVING
 
 ```sql
 SELECT count(*) FROM
@@ -64,7 +64,7 @@ HAVING SUM(count) > 300
 x
 ```
 
-## (f) two words: INTERSECTION
+## (f) Two words: INTERSECT
 
 ```sql
 SELECT count(*) FROM
@@ -79,6 +79,8 @@ WHERE term = "world"
 )
 x
 ```
+
+***
 
 # Problem 2
 
@@ -134,7 +136,7 @@ AND d.docid = '10080_txt_crude'
 AND dt.docid = '17035_txt_earn'
 ```
 
-## (i): Keyword search:
+## (i) Keyword search
 
 ```sql
 SELECT d.docid, dt.docid, SUM(d.count * dt.count) AS similarity
