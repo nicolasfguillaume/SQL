@@ -1,7 +1,6 @@
-Problem 1
----------
+# Problem 1
 
-# (a) select: s10398_txt_earn(frequency)
+## (a) select: s10398_txt_earn(frequency)
 
 ```sql
 SELECT count(*) FROM
@@ -13,7 +12,7 @@ WHERE docid = "10398_txt_earn"
 x
 ```
 
-# (b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
+## (b) select project: pterm(sdocid=10398_txt_earn and count=1(frequency))
 
 ```sql
 SELECT count(*) FROM
@@ -25,8 +24,9 @@ WHERE docid = "10398_txt_earn" AND count = 1
 x
 ```
 
-(c) union: pterm(sdocid=10398_txt_earn and count=1(frequency)) U pterm(sdocid=925_txt_trade and count=1(frequency))
+## (c) union: pterm(sdocid=10398_txt_earn and count=1(frequency)) U pterm(sdocid=925_txt_trade and count=1(frequency))
 
+```sql
 SELECT count(*) FROM
 (
 SELECT term FROM Frequency
@@ -38,18 +38,22 @@ SELECT term FROM Frequency
 WHERE docid = "925_txt_trade" AND count = 1
 )
 x
+```
 
 (d) count:
 
+```sql
 SELECT count(*) FROM
 (
 SELECT docid FROM Frequency
 WHERE term = "parliament"
 )
 x
+```
 
-(e) big document: GROUP BY and HAVING
+## (e) big document: GROUP BY and HAVING
 
+```sql
 SELECT count(*) FROM
 (
 SELECT docid, SUM(count)
@@ -58,9 +62,11 @@ GROUP BY docid
 HAVING SUM(count) > 300
 )
 x
+```
 
-(f) two words: INTERSECTION
+## (f) two words: INTERSECTION
 
+```sql
 SELECT count(*) FROM
 (
 SELECT docid FROM Frequency
@@ -72,12 +78,13 @@ SELECT docid FROM Frequency
 WHERE term = "world" 
 )
 x
+```
 
-Problem 2
----------
+# Problem 2
 
-(g) Matrix multiplication
+## (g) Matrix multiplication
 
+```sql
 SELECT value_C
 FROM
 (
@@ -88,11 +95,12 @@ GROUP BY a.row_num , b.col_num
 )
 x
 WHERE row_num_C = 2 AND col_num_C = 3
+```
 
-(h) Term-document matrix
+## (h) Term-document matrix
 
 TEST:
-
+```sql
 SELECT value_dxdt
 FROM
 (
@@ -103,28 +111,32 @@ GROUP BY d.docid , dt.docid
 )
 x
 WHERE row_num_dxdt = '10080_txt_crude' AND col_num_dxdt = '17035_txt_earn'
-
+```
 
 SOLUTION:
 
+```sql
 SELECT d.docid AS row_num_ddt , dt.docid AS col_num_ddt , SUM(d.count * dt.count) AS 
 value_ddt
 FROM Frequency d, Frequency dt
 WHERE d.term = dt.term
 AND row_num_ddt = '10080_txt_crude' 
 AND col_num_ddt = '17035_txt_earn'
+```
 
 OR EVEN SHORTER:
 
+```sql
 SELECT SUM(d.count * dt.count)
 FROM Frequency d, Frequency dt
 WHERE d.term = dt.term
 AND d.docid = '10080_txt_crude' 
 AND dt.docid = '17035_txt_earn'
+```
 
-(i): Keyword search:
+## (i): Keyword search:
 
-
+```sql
 SELECT d.docid, dt.docid, SUM(d.count * dt.count) AS similarity
 FROM Frequency d, 
 (
@@ -137,3 +149,4 @@ SELECT 'q' as docid, 'treasury' as term, 1 as count
 WHERE d.term = dt.term
 GROUP BY d.docid
 ORDER BY similarity DESC
+```
