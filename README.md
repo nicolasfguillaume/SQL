@@ -5,5 +5,5 @@
   * Problem 2
 
 * Standford Database course: SQL assignment
-  * Movie rating
-  * Social network
+  * Movie-rating website database
+  * Social network database
