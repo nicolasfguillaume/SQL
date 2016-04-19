@@ -11,7 +11,7 @@ WHERE docid = "10398_txt_earn"
 )
 ```
 
-## (b) Select Project
+## (b) Select and Project
 
 ```sql
 SELECT count(*) FROM
