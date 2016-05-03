@@ -1,7 +1,7 @@
 # SQL
 
 * Introduction to Data Science (Coursera): SQL assignment
-  * Problem 1: SELCT, WHERE, UNION, GROUP BY, etc.
+  * Problem 1: SELECT, WHERE, UNION, GROUP BY, etc.
   * Problem 2: Matrix Multiplication, Term-document matrix, Keyword search
 
 * Stanford Database course: SQL assignment
