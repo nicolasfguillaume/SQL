@@ -4,6 +4,6 @@
   * Problem 1
   * Problem 2
 
-* Standford Database course: SQL assignment
+* Stanford Database course: SQL assignment
   * Movie-rating website database
   * Social network database
